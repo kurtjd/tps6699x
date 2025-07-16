@@ -3,6 +3,7 @@
 use bincode::enc::Encoder;
 use bincode::error::EncodeError;
 use bincode::Encode;
+use ufmt::derive::uDebug;
 
 /// Timeout for completion of `Trig` command, determined by experimentation
 #[allow(dead_code)]
@@ -12,7 +13,7 @@ pub(crate) const TIMEOUT_MS: u32 = 500;
 #[allow(dead_code)]
 pub(crate) const ARGS_LEN: usize = 2;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum Cmd {
@@ -31,7 +32,7 @@ impl Encode for Cmd {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum Edge {
@@ -48,7 +49,7 @@ impl Encode for Edge {
     }
 }
 
-#[derive(Debug, Encode, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Encode, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct Args {
     pub edge: Edge,

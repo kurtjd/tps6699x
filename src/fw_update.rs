@@ -4,6 +4,7 @@ use crate::asynchronous::fw_update::{app_config_block_metadata_offset, data_bloc
 use crate::command::{TfudArgs, TfuiArgs};
 use crate::stream::{ReadOperation, SeekOperation};
 use crate::trace;
+use ufmt::derive::uDebug;
 
 /// Header block index
 pub const HEADER_BLOCK_INDEX: usize = 0;
@@ -66,7 +67,7 @@ impl UpdateConfig {
 }
 
 /// Current update state
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, uDebug, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum State {
     /// Receiving update args

@@ -1,10 +1,11 @@
 //! Provides a struct that implements logic to present a stream of disparate byte slices as a single stream of bytes
 
 use embedded_usb_pd::PdError;
+use ufmt::derive::uDebug;
 
 use crate::trace;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, uDebug, PartialEq, Eq)]
 pub struct ReadOperation {
     /// Total number of bytes to read
     pub total: usize,
@@ -24,7 +25,7 @@ impl ReadOperation {
     }
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, uDebug, PartialEq, Eq)]
 pub struct SeekOperation(usize);
 
 impl SeekOperation {

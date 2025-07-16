@@ -6,6 +6,7 @@
 //! - Use a units crate for safely expressing values like 20 mV per LSB, etc.
 
 use bitfield::bitfield;
+use ufmt::derive::uDebug;
 
 /// The address of the `Autonegotiate Sink` register.
 pub const ADDR: u8 = 0x37;
@@ -15,7 +16,7 @@ pub const ADDR: u8 = 0x37;
 /// This exceeds the maximum supported length by the [`device_driver`] crate.
 pub const LEN: usize = 24;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum AutoNegRdoPriority {
     HigherVoltage = 0x0,
@@ -41,7 +42,7 @@ impl From<AutoNegRdoPriority> for bool {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum AutoComputeSinkMinPower {
     ProvidedByHost = 0x0,
@@ -67,7 +68,7 @@ impl From<AutoComputeSinkMinPower> for bool {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum NoCapabilityMismatch {
     Enabled = 0x0,
@@ -93,7 +94,7 @@ impl From<NoCapabilityMismatch> for bool {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum AutoComputeSinkMinVoltage {
     ProvidedByHost = 0x0,
@@ -119,7 +120,7 @@ impl From<AutoComputeSinkMinVoltage> for bool {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum AutoComputeSinkMaxVoltage {
     ProvidedByHost = 0x0,
@@ -145,7 +146,7 @@ impl From<AutoComputeSinkMaxVoltage> for bool {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum PpsRequestInterval {
     EightSeconds = 0x0,

@@ -3,6 +3,7 @@ use bincode::enc::Encoder;
 use bincode::error::{DecodeError, EncodeError};
 use bincode::{Decode, Encode};
 use embedded_usb_pd::PdError;
+use ufmt::derive::uDebug;
 
 pub mod trig;
 
@@ -22,7 +23,7 @@ const fn u32_from_str(value: &str) -> u32 {
     u32::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3]]).to_le()
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u32)]
 pub enum Command {
@@ -121,7 +122,7 @@ impl PartialEq<u32> for Command {
     }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum ReturnValue {
@@ -210,7 +211,7 @@ pub(crate) const RESET_ARGS_LEN: usize = 2;
 pub(crate) const RESET_FEATURE_ENABLE: u8 = 0xAC;
 
 /// Arugments to reset-like commands
-#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, Default, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct ResetArgs {
     /// True to swap banks on reset
@@ -252,7 +253,7 @@ pub(crate) const RESET_TIMEOUT_MS: u32 = RESET_DELAY_MS + 100;
 pub(crate) const TFUI_ARGS_LEN: usize = 8;
 
 /// Arguments for TFUi command
-#[derive(Debug, Clone, Copy, Decode, Encode, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, Decode, Encode, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct TfuiArgs {
     pub num_data_blocks_tx: u16,
@@ -262,7 +263,7 @@ pub struct TfuiArgs {
 }
 
 /// Command type for TFUq command
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum TfuqCommandType {
@@ -277,7 +278,7 @@ impl Encode for TfuqCommandType {
 }
 
 /// Status we're checking for in the TFUq command
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum TfuqStatusQuery {
@@ -295,7 +296,7 @@ impl Encode for TfuqStatusQuery {
 }
 
 /// Status of a block supplied to device
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 #[repr(u8)]
 pub enum TfuqBlockStatus {
@@ -377,7 +378,7 @@ impl<Context> Decode<Context> for TfuqBlockStatus {
 pub(crate) const TFUQ_ARGS_LEN: usize = 2;
 
 /// Arguments for TFUq command
-#[derive(Debug, Encode, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Encode, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct TfuqArgs {
     pub status_query: TfuqStatusQuery,
@@ -392,7 +393,7 @@ pub(crate) const TFUQ_RETURN_LEN: usize = 40;
 pub(crate) const TFUQ_RETURN_BLOCK_STATUS_LEN: usize = 13;
 
 /// Return data from TFUq command
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct TfuqReturnValue {
     pub active_host: u8,
@@ -442,7 +443,7 @@ pub(crate) const SRDY_TIMEOUT_MS: u32 = 250;
 #[allow(dead_code)]
 pub(crate) const SRYR_TIMEOUT_MS: u32 = 250;
 /// Srdy switch to enable
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum SrdySwitch {
     /// PP 5V1
@@ -475,7 +476,7 @@ impl From<SrdySwitch> for u8 {
 /// Arguments for TFUd command
 #[allow(dead_code)]
 pub(crate) const TFUD_ARGS_LEN: usize = 8;
-#[derive(Debug, Decode, Encode, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Decode, Encode, Clone, Copy, PartialEq, Eq)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub struct TfudArgs {
     pub block_number: u16,

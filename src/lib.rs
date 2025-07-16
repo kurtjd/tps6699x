@@ -1,6 +1,7 @@
 #![no_std]
 
 use embedded_usb_pd::{PdError, PortId};
+use ufmt::derive::uDebug;
 
 pub mod asynchronous;
 pub mod command;
@@ -27,7 +28,7 @@ pub const PORT0: PortId = PortId(0);
 /// Port 1 constant
 pub const PORT1: PortId = PortId(1);
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq)]
 #[repr(u32)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum Mode {

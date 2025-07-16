@@ -7,6 +7,7 @@
 
 use bitfield::bitfield;
 use embedded_usb_pd::pdo::MV50_UNIT;
+use ufmt::derive::uDebug;
 
 /// The address of the `Port Configuration` register.
 pub const ADDR: u8 = 0x28;
@@ -15,7 +16,7 @@ pub const ADDR: u8 = 0x28;
 pub const LEN: usize = 18;
 
 /// SBU Mux Usage field.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum SbuMuxUsage {
     /// DisplayPort mode enables AUX channel TBT and USB4 modes enable SBRX/TX channel
@@ -47,7 +48,7 @@ impl From<SbuMuxUsage> for u8 {
 }
 
 /// SBU Mux Default Setting
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum SbuMuxDefaultSetting {
     /// Don't change the default setting after booting
@@ -83,7 +84,7 @@ impl From<SbuMuxDefaultSetting> for u8 {
 }
 
 /// SBU Mux Debug Setting
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum SbuMuxDebugSetting {
     /// Enable SBU to DBG upon entry to DebugAccessory.SNK
@@ -127,7 +128,7 @@ impl From<SbuMuxDebugSetting> for u8 {
 }
 
 /// Level shifter direction configuration
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum LevelShifterDirectionCfg {
     /// Automatic
@@ -163,7 +164,7 @@ impl From<LevelShifterDirectionCfg> for u8 {
 }
 
 /// External DCDC Type field.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum ExternalDcdcType {
     /// Marina Bay
@@ -195,7 +196,7 @@ impl From<ExternalDcdcType> for u8 {
 }
 
 /// TypeC State Machine
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum TypeCStateMachine {
     /// Sink state machine only
@@ -231,7 +232,7 @@ impl From<TypeCStateMachine> for u8 {
 }
 
 /// VBUS Sink UVP Trip HV
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum VbusSinkUvpTripHv {
     /// 5%
@@ -283,7 +284,7 @@ impl From<VbusSinkUvpTripHv> for u8 {
 }
 
 /// OVP for PP5V
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum OvpForPp5v {
     /// 5.25V
@@ -319,7 +320,7 @@ impl From<OvpForPp5v> for u8 {
 }
 
 /// VBUS OVP Usage
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum VbusOvpUsage {
     /// 100%
@@ -355,7 +356,7 @@ impl From<VbusOvpUsage> for u8 {
 }
 
 /// USB3 Rate configuration.
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum Usb3Rate {
     /// Not supported
@@ -391,7 +392,7 @@ impl From<Usb3Rate> for u8 {
 }
 
 /// TypeC Support Options
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum TypeCSupportOptions {
     /// No Type-C optional states are supported
@@ -423,7 +424,7 @@ impl From<TypeCSupportOptions> for u8 {
 }
 
 /// Crossbar Type
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(uDebug, Clone, Copy, PartialEq, Eq, Hash)]
 #[cfg_attr(feature = "defmt", derive(defmt::Format))]
 pub enum CrossbarType {
     /// Type 1

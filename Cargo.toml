@@ -19,6 +19,7 @@ log = { version = "0.4.14", optional = true }
 embassy-sync = { git = "https://github.com/embassy-rs/embassy", optional = true }
 embassy-time = { git = "https://github.com/embassy-rs/embassy", optional = true }
 bincode = { version = "2.0.0", default-features = false, features = ["derive"] }
+ufmt = "0.2.0"
 
 [features]
 default = []
